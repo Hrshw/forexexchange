@@ -14,7 +14,7 @@ module.exports = (redisClient) => {
         if (cachedRate !== null) {
             res.json({ exchangeRate: parseFloat(cachedRate), source: 'cache' });
         } else {
-            const API_KEY = '018bff91af1547928a17cc1c05d84294';
+            const API_KEY = process.env.API_KEY;
 
             try {
                 const response = await axios.get(`https://openexchangerates.org/api/historical/${date}.json`, {

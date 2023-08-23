@@ -18,7 +18,7 @@ module.exports = (redisClient) => {
                 const convertedAmount = exchangeRate * parseFloat(amount);
                 res.json({ convertedAmount, source: 'cache' });
             } else {
-                const API_KEY = '018bff91af1547928a17cc1c05d84294';
+                const API_KEY = process.env.API_KEY;
 
                 const response = await axios.get('https://openexchangerates.org/api/latest.json', {
                     params: {
