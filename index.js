@@ -11,15 +11,14 @@ const app = express();
 app.set('trust proxy', 1);
 
 
-// Retrieve Redis host and port from environment variables
-const redisHost = process.env.REDIS_HOST;
-const redisPort = process.env.REDIS_PORT;
+// Configure Redis connection
+const redisHost = process.env.REDIS_HOST; // Set the environment variable name provided by Cyclic
+const redisPort = process.env.REDIS_PORT; // Set the environment variable name provided by Cyclic
 
-// Create a Redis client
-const redisClient = Redis.createClient({
+const redisClient = new Redis({
   host: redisHost,
   port: redisPort,
-  // other configuration options
+  // Add other configuration options as needed
 });
 // Enable CORS
 app.use(cors());
