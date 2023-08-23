@@ -4,12 +4,12 @@ const authenticateJWT = (req, res, next) => {
   const token = req.cookies.authToken; // Use the cookie name you set
 
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.redirect('/'); // Redirect to login page
   }
 
   jwt.verify(token, 'secretKey', (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.redirect('/'); // Redirect to login page
     }
 
     req.userId = decoded.id;

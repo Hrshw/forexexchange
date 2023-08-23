@@ -51,18 +51,31 @@ app.use(authRouter);
 const conversionRoutes = require('./src/routes/conversionRoutes')(redisClient);
 const exchangeRatesRoutes = require('./src/routes/exchangeRatesRoutes')(redisClient);
 const historicalDataRoutes = require('./src/routes/historicalDataRoutes')(redisClient);
+const HistoricalExchangeRate = require('./src/models/HistoricalExchangeRate');
+const historicalRatesRoutes = require('./src/routes/getHistoricalData')();
+app.use('/api/historical-rates', historicalRatesRoutes);
+
+// Route for rendering the historical rates view
+app.get('/historical-rates', authenticateJWT, async (req, res) => {
+    try {
+        const historicalRates = await HistoricalExchangeRate.find({}).sort({ date: -1 }).limit(7);
+        res.render('historicalRates', { rates: historicalRates });
+    } catch (error) {
+        console.error('Error fetching historical rates:', error);
+        res.status(500).json({ error: error.message }); // Return the actual error message
+    }
+});
 
 app.use('/api/conversion', conversionRoutes);
 app.use('/api/exchange-rates', exchangeRatesRoutes);
 app.use('/api/historical-data', historicalDataRoutes);
-
+app.use('/api/historical-rates', historicalRatesRoutes);
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('login');
 });
-
 // Add your protected routes here
 app.get('/conversion',authenticateJWT, (req, res) => {
     res.render('conversion');
