@@ -1,4 +1,3 @@
-// index.js
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -9,9 +8,19 @@ const Redis = require('ioredis');
 const cookieParser = require('cookie-parser');
 const authenticateJWT = require('./src/middleware/authenticateJWT');
 const app = express();
+app.set('trust proxy', 1);
+
+
+// Retrieve Redis host and port from environment variables
+const redisHost = process.env.REDIS_HOST;
+const redisPort = process.env.REDIS_PORT;
 
 // Create a Redis client
-const redisClient = new Redis();
+const redisClient = Redis.createClient({
+  host: redisHost,
+  port: redisPort,
+  // other configuration options
+});
 // Enable CORS
 app.use(cors());
 app.use(cookieParser());

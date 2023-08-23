@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://rahul:RSsmy11ssm@formbuilder.t0jplog.mongodb.net/forexexchange", {
+mongoose.connect(process.env.DB_CONN, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
