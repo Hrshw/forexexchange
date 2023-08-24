@@ -22,6 +22,7 @@ Stay updated with the latest exchange rates for a wide range of currencies. The 
 - **Express.js**: Express.js is used to create a fast and efficient web server that handles API requests and serves HTML views.
 - **MongoDB**: MongoDB is used to store historical exchange rate data and other relevant information.
 - **Redis**: Redis is used to cache frequently accessed data, reducing response times and improving performance.
+- **JWT**: (JSON Web Tokens): JWT is used for user authentication and authorization, enhancing the security of the application.
 - **Handlebars (hbs)**: Handlebars is used as the templating engine for rendering HTML views on the server.
 
 ## Installation and Setup
