@@ -12,8 +12,8 @@ app.set('trust proxy', 1);
 
 
 // Configure Redis connection
-const redisHost = process.env.REDIS_HOST; // Set the environment variable name provided by Cyclic
-const redisPort = process.env.REDIS_PORT; // Set the environment variable name provided by Cyclic
+const redisHost = process.env.REDIS_HOST; 
+const redisPort = process.env.REDIS_PORT; 
 
 const redisClient = new Redis({
   host: redisHost,
