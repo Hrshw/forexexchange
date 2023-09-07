@@ -30,7 +30,7 @@ Stay updated with the latest exchange rates for a wide range of currencies. The 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/YourUsername/forexexchangeapp.git
+    [git clone https://github.com/YourUsername/forexexchangeapp.git](https://github.com/Hrshw/forexexchange.git)
     ```
 
 2. **Install dependencies:**
